@@ -565,7 +565,7 @@ $formattedDepositPercentage = number_format(abs($depositPercentageChange), 1);
             <div class="info-box mb-3">
                 <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-mobile-alt"></i></span>
                 <a class="info-box-content" href="./?page=ussd_sessions" style="color: inherit; text-decoration: none;">
-                    <span class="info-box-text">Sessions</span>
+                    <span class="info-box-text">USSD Sessions</span>
                     <span class="info-box-number">
                         <div class="amount-container">
                             <span class="amount-value"><?php echo $conn->query("SELECT * FROM ussd_session_manager")->num_rows; ?></span>
