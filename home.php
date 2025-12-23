@@ -391,7 +391,7 @@ $formattedDepositPercentage = number_format(abs($depositPercentageChange), 1);
        <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
-        <a class="info-box-content" href="./?page=account_list" style="color: inherit; text-decoration: none;">
+        <a class="info-box-content" href="./?page=wallet_list" style="color: inherit; text-decoration: none;">
             <span class="info-box-text">Total Wallets</span>
             <span class="info-box-number">
                 <div class="amount-container">
