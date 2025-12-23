@@ -117,13 +117,9 @@ $(document).ready(function () {
         },
         pageLength: 10,
         lengthMenu: [10, 20, 50, 100],
-        buttons: [
-            { extend: 'copy',  className: 'btn btn-sm btn-outline-secondary' },
-            { extend: 'excel', className: 'btn btn-sm btn-outline-success' },
-            { extend: 'pdf',   className: 'btn btn-sm btn-outline-danger' },
-            { extend: 'print', className: 'btn btn-sm btn-outline-primary' }
-        ],
-        order: [[0, "asc"]]
+        ordering: true,
+        order: [[0, "asc"]],
+        dom: 'lrtip'
     });
 
     // Date range picker
