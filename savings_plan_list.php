@@ -3,75 +3,73 @@
 <div class="col-lg-12">
 
     <!-- FILTER CARD -->
-<div class="card card-outline card-primary mb-3">
-    <div class="card-header py-2">
-        <h6 class="mb-0">
-            <i class="fas fa-filter"></i> Filter Savings Plans
-        </h6>
-    </div>
+    <div class="card card-outline card-primary mb-3">
+        <div class="card-header py-2">
+            <h6 class="mb-0">
+                <i class="fas fa-filter"></i> Filter Savings Plans
+            </h6>
+        </div>
 
-    <div class="card-body">
-        <form id="filterForm">
-            <div class="row">
+        <div class="card-body">
+            <form id="filterForm">
+                <div class="row">
 
-                <!-- Date Range -->
-                <div class="col-md-3 mb-2">
-                    <label>Date Range</label>
-                    <input type="text" id="daterange" class="form-control form-control-sm" placeholder="Select date range">
-                </div>
+                    <!-- Date Range -->
+                    <div class="col-md-3 mb-2">
+                        <label>Date Range</label>
+                        <input type="text" id="daterange" class="form-control form-control-sm" placeholder="Select date range">
+                    </div>
 
-                <!-- Status -->
-                <div class="col-md-2 mb-2">
-                    <label>Status</label>
-                    <select id="status" class="form-control form-control-sm select2">
-                        <option value="">All</option>
-                        <option value="active">Active</option>
-                        <option value="completed">Completed</option>
-                        <option value="suspended">Suspended</option>
-                        <option value="redeemed">Redeemed</option>
-                    </select>
-                </div>
+                    <!-- Status -->
+                    <div class="col-md-2 mb-2">
+                        <label>Status</label>
+                        <select id="status" class="form-control form-control-sm select2">
+                            <option value="">All</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="redeemed">Redeemed</option>
+                        </select>
+                    </div>
 
-                <!-- Branch (Filter Only) -->
-                <div class="col-md-3 mb-2">
-                    <label>Branch</label>
-                    <select id="branch" class="form-control form-control-sm select2">
-                        <option value="">All Branches</option>
-                        <?php
-                        $branchQuery = $conn->query("SELECT id, branch_name FROM branches ORDER BY branch_name ASC");
-                        while ($branch = $branchQuery->fetch_assoc()) {
-                            echo "<option value='{$branch['id']}'>{$branch['branch_name']}</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
+                    <!-- Branch (Filter Only) -->
+                    <div class="col-md-3 mb-2">
+                        <label>Branch</label>
+                        <select id="branch" class="form-control form-control-sm select2">
+                            <option value="">All Branches</option>
+                            <?php
+                            $branchQuery = $conn->query("SELECT id, branch_name FROM branches ORDER BY branch_name ASC");
+                            while ($branch = $branchQuery->fetch_assoc()) {
+                                echo "<option value='{$branch['id']}'>{$branch['branch_name']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
 
-                <!-- Account Name (Commented Out) -->
-                <!--
-                <div class="col-md-2 mb-2">
-                    <label>Account Name</label>
-                    <input type="text" id="account_name" class="form-control form-control-sm" placeholder="Search account">
-                </div>
-                -->
+                    <!-- Account Name -->
+                    <div class="col-md-2 mb-2">
+                        <label>Account Name</label>
+                        <input type="text" id="account_name" class="form-control form-control-sm" placeholder="Search account">
+                    </div>
 
-                <!-- Buttons -->
-                <div class="col-md-4 mb-2 d-flex flex-wrap gap-1 align-items-end">
-                    <button type="button" id="btnApplyFilter" class="btn btn-primary btn-sm">
-                        <i class="fas fa-search"></i> Apply
-                    </button>
-                    <button type="reset" class="btn btn-outline-secondary btn-sm">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <button type="button" id="btnExportExcel" class="btn btn-success btn-sm">
-                        <i class="fas fa-file-excel"></i> Export All
-                    </button>
-                </div>
-
-            </div>
-        </form>
-    </div>
+                    <!-- Buttons -->
+                    <!-- Replace the existing buttons section with this: -->
+<div class="col-md-2 mb-2 d-flex flex-column">
+    <button type="button" id="btnApplyFilter" class="btn btn-sm btn-primary mb-1 w-100">
+        <i class="fas fa-search"></i> Apply
+    </button>
+    <button type="reset" class="btn btn-sm btn-outline-secondary mb-1 w-100">
+        <i class="fas fa-times"></i> Reset
+    </button>
+    <button type="button" id="btnExportExcel" class="btn btn-sm btn-success w-100">
+        <i class="fas fa-file-excel"></i> Export All
+    </button>
 </div>
 
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- TABLE CARD -->
     <div class="card card-outline card-info">

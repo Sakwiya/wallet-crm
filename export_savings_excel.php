@@ -1,6 +1,6 @@
 <?php
 include 'db_connect.php';
-header("Content-Type: application/vnd.ms-excel");
+header("Content-Type: text/csv"); 
 header("Content-Disposition: attachment; filename=savings_export.xls");
 
 // Filters
