@@ -677,7 +677,7 @@ $formattedDepositPercentage = number_format(abs($depositPercentageChange), 1);
                         </li>
                     </ul>
                     <div class="text-center mt-3">
-                        <a href="./?page=monthly_transactions" class="btn btn-sm btn-outline-primary">
+                        <a href="./?page=all_transactions" class="btn btn-sm btn-outline-primary">
                             <i class="fas fa-list mr-1"></i>View All Transactions
                         </a>
                     </div>
