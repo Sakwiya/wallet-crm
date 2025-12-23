@@ -106,6 +106,21 @@ if ($yesterdayAmount > 0) {
 
 $formattedDepositPercentage = number_format(abs($depositPercentageChange), 1);
 
+// Fetch monthly revenue for the current year
+$monthlyRevenue = array_fill(1, 12, 0); // Initialize all months to 0
+$sql = "SELECT MONTH(date_created) AS month, SUM(amount) AS total 
+        FROM transactions 
+        WHERE YEAR(date_created) = $currentYear AND type NOT IN (3,4)
+        GROUP BY MONTH(date_created)";
+$result = $conn->query($sql);
+while($row = $result->fetch_assoc()){
+    $month = (int)$row['month'];
+    $monthlyRevenue[$month] = (float)$row['total'];
+}
+
+$jsRevenueData = json_encode(array_values($monthlyRevenue));
+
+
 
 
 ?>
@@ -687,47 +702,42 @@ $formattedDepositPercentage = number_format(abs($depositPercentageChange), 1);
   
 
     <script>
-        // Revenue Chart
-        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-        const revenueChart = new Chart(revenueCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Monthly Revenue (K)',
-                    data: [12500, 19000, 15000, 22000, 18000, 25000, 21000, 28000, 24000, 30000, 27000, 32000],
-                    borderColor: '#4e73df',
-                    backgroundColor: 'rgba(78, 115, 223, 0.1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            drawBorder: false
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    }
+    // Revenue Chart
+    const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(revenueCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Monthly Revenue (K)',
+                data: <?php echo $jsRevenueData; ?>,
+                borderColor: '#4e73df',
+                backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
                 }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { drawBorder: false }
+                },
+                x: { grid: { display: false } }
             }
-        });
-    </script>
+        }
+    });
+</script>
+
 
     <?php else: ?>
     <div class="col-12">
